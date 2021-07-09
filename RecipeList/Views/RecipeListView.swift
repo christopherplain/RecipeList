@@ -12,19 +12,31 @@ struct RecipeListView: View {
     
     var body: some View {
         NavigationView {
-            List(model.recipes) { recipe in
-                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                    HStack(spacing: 20) {
-                        Image(recipe.image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 50)
-                            .clipped()
-                            .cornerRadius(5)
-                        Text(recipe.name)
+            VStack(alignment: .leading) {
+                Text("Recipes")
+                    .font(.largeTitle)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding(.top, 40)
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(model.recipes) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                HStack(spacing: 20) {
+                                    Image(recipe.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 50, height: 50)
+                                        .clipped()
+                                        .cornerRadius(5)
+                                    Text(recipe.name)
+                                }
+                            }
+                        }
                     }
                 }
-            }.navigationTitle("Recipes")
+            }
+            .navigationBarHidden(true)
+            .padding(.leading)
         }
     }
 }
@@ -32,5 +44,6 @@ struct RecipeListView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeListView()
+            .environmentObject(RecipeModel())
     }
 }
