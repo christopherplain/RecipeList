@@ -12,6 +12,7 @@ struct RecipeTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            //MARK: Featured View
             RecipeFeaturedView()
                 .tabItem {
                     VStack {
@@ -20,6 +21,7 @@ struct RecipeTabView: View {
                     }
                 }
                 .tag("featured")
+            // MARK: List View
             RecipeListView()
                 .tabItem {
                     VStack {
