@@ -18,6 +18,12 @@ struct RecipeDetailView: View {
                 Image(recipe.image)
                     .resizable()
                     .scaledToFill()
+                // MARK: Recipe Title
+                Text(recipe.name)
+                    .font(.largeTitle)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding(.top, 20)
+                    .padding(.leading)
                 // MARK: Serving Size
                 VStack(alignment: .leading) {
                     Text("Seclect your serving size:")
@@ -30,7 +36,7 @@ struct RecipeDetailView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(width: 160)
                 }
-                .padding(.horizontal)
+                .padding()
                 // MARK: Ingredients
                 VStack(alignment: .leading) {
                     Text("Ingredients")
@@ -55,7 +61,6 @@ struct RecipeDetailView: View {
                 .padding(.horizontal)
             }
         }
-        .navigationBarTitle(recipe.name)
     }
 }
 
